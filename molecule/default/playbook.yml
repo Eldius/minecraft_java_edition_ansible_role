@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - {
+      role: minecraft-java-edition-ansible-role,
+      minecraft_service_user: minecrafter_user,
+      minecraft_install_folder: /servers/minecraft_folder
+    }

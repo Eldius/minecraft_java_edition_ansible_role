@@ -1,0 +1,16 @@
+---
+# tasks file for minecraft-java-edition-ansible-role
+- name: Create service user
+  user:
+    name: {{ minecraft_service_user }}
+    system: true
+    state: present
+  become: true
+
+- name: Create install folder
+  file:
+    path: "{{ minecraft_install_folder }}"
+    owner: "{{ minecraft_service_user }}"
+    group: "{{ minecraft_service_user }}"
+    mode: 0644
+  become: true
