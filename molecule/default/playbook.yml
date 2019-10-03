@@ -5,5 +5,8 @@
     - {
       role: minecraft-java-edition-ansible-role,
       minecraft_service_user: minecrafter_user,
-      minecraft_install_folder: /servers/minecraft_folder
+      minecraft_install_folder: /servers/minecraft_folder,
+      minecraft_max_memory: 2g,
+      minecraft_min_memory: 1g,
+      minecraft_service_name: minecraft_service
     }

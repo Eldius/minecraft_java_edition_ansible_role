@@ -1,0 +1,14 @@
+[Unit]
+Description={{ minecraft_service_name }}
+After=network.target
+
+[Service]
+Type=simple
+User={{ minecraft_service_user }}
+WorkingDirectory={{ minecraft_install_folder }}
+ExecStart={{ minecraft_install_folder }}/start_server.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+

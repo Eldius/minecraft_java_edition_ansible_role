@@ -1,8 +1,15 @@
 ---
-# tasks file for minecraft-java-edition-ansible-role
+- name: Install dependencies
+  package:
+    name:
+      - openjdk-8-jdk
+      - wget
+      - curl
+  become: true
+
 - name: Create service user
   user:
-    name: {{ minecraft_service_user }}
+    name: "{{ minecraft_service_user }}"
     system: true
     state: present
   become: true
@@ -12,5 +19,32 @@
     path: "{{ minecraft_install_folder }}"
     owner: "{{ minecraft_service_user }}"
     group: "{{ minecraft_service_user }}"
+    state: directory
     mode: 0644
+  become: true
+
+- name: Getting the server JAR file
+  get_url:
+    url: https://launcher.mojang.com/v1/objects/3dc3d84a581f14691199cf6831b71ed1296a9fdf/server.jar
+    dest: "{{ minecraft_install_folder }}"
+    owner: "{{ minecraft_service_user }}"
+    group: "{{ minecraft_service_user }}"
+    mode: 0744
+  become: true
+
+- name: Setting up startup script
+  template:
+    src: start_server.sh
+    dest: "{{ minecraft_install_folder }}"
+    owner: "{{ minecraft_service_user }}"
+    group: "{{ minecraft_service_user }}"
+    mode: 0744
+  become: true
+
+- name: Create Systemd service file
+  template:
+    src: service.service
+    dest: "/etc/systemd/system/{{ minecraft_service_name }}.service"
+    owner: "root"
+    group: "root"
   become: true
