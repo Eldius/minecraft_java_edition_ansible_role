@@ -51,7 +51,3 @@ jobs:
           command: |
             . ~/venv/bin/activate
             molecule test
-
-      - store_artifacts:
-          path: test-reports
-          destination: test-reports
