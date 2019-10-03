@@ -53,3 +53,15 @@ def test_service_config(host):
     assert f.group == 'root'
     f.contains("ExecStart=/servers/minecraft_folder/start_server.sh")
     f.contains("User=minecrafter_user")
+    f.contains("Description=minecraft_service")
+
+
+def test_java_installation(host):
+    assert host.exists("java")
+    version_result = host.run("java -version")
+    print(version_result.stdout)
+    print(version_result.stderr)
+    assert ("build 1.8." in version_result.stdout or
+            "build 1.8." in version_result.stderr)
+    assert ("OpenJDK 64-Bit Server VM" in version_result.stdout or
+            "OpenJDK 64-Bit Server VM" in version_result.stderr)
