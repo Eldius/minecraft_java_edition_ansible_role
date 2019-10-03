@@ -1,6 +1,59 @@
 ---
+## Role attributes
+### The user to run the service
+### (it's a good idea to use a dedicated user)
 minecraft_service_user: minecrafter
+### The folder where we eill put the server app and
+### it's configuration file
 minecraft_install_folder: /servers/minecraft
+### Max memory attribute for the JVM
 minecraft_max_memory: 1024m
+### Min memory attribute for the JVM
 minecraft_min_memory: 1024m
+### The name used by Systemd to manage the service
 minecraft_service_name: minecraft
+
+## server.properties attributes
+minecraft_spawn_protection: 16
+minecraft_max_tick_time: 60000
+minecraft_query_port: 25565
+minecraft_generator_settings: 
+minecraft_force_gamemode: false
+minecraft_gamemode: survival
+minecraft_allow_nether: true
+minecraft_enforce_whitelist: false
+minecraft_broadcast_console_to_ops: true
+minecraft_enable_query: true
+minecraft_player_idle_timeout: 15
+minecraft_difficulty: easy
+minecraft_spawn_monsters: true
+minecraft_rcon_enable: false
+minecraft_rcon_port: 25575
+minecraft_rcon_password:
+minecraft_rcon_broadcast_to_ops: true
+minecraft_op_permission_level: 4
+minecraft_pvp: true
+minecraft_snooper_enabled: true
+minecraft_level_type: default
+minecraft_hardcore: false
+minecraft_enable_command_block: false
+minecraft_max_players: 10
+minecraft_network_compression_threshold: 256
+minecraft_resource_pack_sha1:
+minecraft_max_world_size: 29999984
+minecraft_server_port: 25565
+minecraft_server_ip:
+minecraft_spawn_npcs: true
+minecraft_allow_flight: false
+minecraft_level_name: world
+minecraft_view_distance: 10
+minecraft_resource_pack:
+minecraft_spawn_animals: true
+minecraft_whitelist: false
+minecraft_generate_structures: true
+minecraft_max_build_height: 256
+minecraft_online_mode: true
+minecraft_level_seed:
+minecraft_use_native_transport: true
+minecraft_prevent_proxy_connections: false
+minecraft_motd: A Minecraft Server

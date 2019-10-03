@@ -8,5 +8,6 @@
       minecraft_install_folder: /servers/minecraft_folder,
       minecraft_max_memory: 2g,
       minecraft_min_memory: 1g,
-      minecraft_service_name: minecraft_service
+      minecraft_service_name: minecraft_service,
+      minecraft_max_players: 33
     }

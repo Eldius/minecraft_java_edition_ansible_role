@@ -36,6 +36,17 @@
   notify:
     - restart minecraft-service
 
+- name: Setting up server.properties file
+  template:
+    src: server.properties
+    dest: "{{ minecraft_install_folder }}"
+    owner: "{{ minecraft_service_user }}"
+    group: "{{ minecraft_service_user }}"
+    mode: 0744
+  become: true
+  notify:
+    - restart minecraft-service
+
 - name: Setting up startup script
   template:
     src: start_server.sh
