@@ -1,7 +1,9 @@
-Role Name
-=========
+minecraft-java-edition-ansible-role
+===================================
 
 It's just a role to setup a Minecraft Java Edition server.
+
+[![CircleCI](https://circleci.com/gh/Eldius/minecraft-java-edition-ansible-role.svg?style=svg)](https://circleci.com/gh/Eldius/minecraft-java-edition-ansible-role)
 
 Requirements
 ------------
