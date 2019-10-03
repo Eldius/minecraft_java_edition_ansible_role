@@ -33,6 +33,8 @@
     group: "{{ minecraft_service_user }}"
     mode: 0744
   become: true
+  notify:
+    - restart minecraft-service
 
 - name: Setting up startup script
   template:
@@ -42,6 +44,8 @@
     group: "{{ minecraft_service_user }}"
     mode: 0744
   become: true
+  notify:
+    - restart minecraft-service
 
 - name: Create Systemd service file
   template:
@@ -50,3 +54,5 @@
     owner: "root"
     group: "root"
   become: true
+  notify:
+    - restart minecraft-service

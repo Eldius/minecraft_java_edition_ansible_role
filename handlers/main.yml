@@ -1,2 +1,20 @@
 ---
-# handlers file for minecraft-java-edition-ansible-role
+- name: restart minecraft-service
+  service:
+    name: "{{ minecraft_service_name }}"
+    state: restarted
+    enabled: true
+  become: true
+  notify:
+    register update
+
+- name: register update
+  lineinfile:
+    dest: "{{ minecraft_install_folder }}/ansible_execution.log"
+    line: "executed at: {{ ansible_date_time.iso8601 }}"
+    create: true
+    state: present
+    owner: "{{ minecraft_service_user }}"
+    group: "{{ minecraft_service_user }}"
+    mode: 0755
+  become: true
