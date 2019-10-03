@@ -49,6 +49,7 @@ jobs:
           command: |
             . venv/bin/activate
             cp -R ${PWD} /tmp/controle-oi-filebeat-ansible-role
+            rm -rf /tmp/controle-oi-filebeat-ansible-role/venv
             cd /tmp/controle-oi-filebeat-ansible-role && molecule test
 
       - store_artifacts:
