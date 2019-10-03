@@ -48,7 +48,8 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-            molecule test
+            cp -R ${PWD} /tmp/controle-oi-filebeat-ansible-role
+            cd /tmp/controle-oi-filebeat-ansible-role && molecule test
 
       - store_artifacts:
           path: test-reports
