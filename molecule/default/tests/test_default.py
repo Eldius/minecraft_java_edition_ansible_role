@@ -56,6 +56,15 @@ def test_server_config(host):
     f.contains("server-port=25565")
 
 
+def test_eula_file(host):
+    f = host.file('/servers/minecraft_folder/eula.txt')
+    assert f.exists
+    assert f.user == 'minecrafter_user'
+    assert f.group == 'minecrafter_user'
+    f.contains("eula=true")
+    f.content == "eula=true"
+
+
 def test_service_config(host):
     f = host.file('/etc/systemd/system/minecraft_service.service')
     assert f.exists

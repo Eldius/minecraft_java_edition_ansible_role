@@ -22,8 +22,19 @@
     owner: "{{ minecraft_service_user }}"
     group: "{{ minecraft_service_user }}"
     state: directory
-    mode: 0644
+    mode: 0744
   become: true
+
+- name: Prepare the eula.txt file
+  copy:
+    src: "eula.txt"
+    dest: "{{ minecraft_install_folder }}/eula.txt"
+    owner: "{{ minecraft_service_user }}"
+    group: "{{ minecraft_service_user }}"
+    mode: 0744
+  become: true
+  notify:
+    - restart minecraft-service
 
 - name: Getting the server JAR file
   get_url:
