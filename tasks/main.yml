@@ -27,11 +27,10 @@
 
 - name: Prepare the eula.txt file
   copy:
-    src: "eula.txt"
+    content: "eula=true"
     dest: "{{ minecraft_install_folder }}/eula.txt"
     owner: "{{ minecraft_service_user }}"
     group: "{{ minecraft_service_user }}"
-    mode: 0744
   become: true
   notify:
     - restart minecraft-service
@@ -55,6 +54,8 @@
     group: "{{ minecraft_service_user }}"
     mode: 0744
   become: true
+  tags:
+    - molecule-idempotence-notest
   notify:
     - restart minecraft-service
 
