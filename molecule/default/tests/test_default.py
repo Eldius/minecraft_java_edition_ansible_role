@@ -41,7 +41,7 @@ def test_startup_script(host):
     assert f.exists
     assert f.user == 'minecrafter_user'
     assert f.group == 'minecrafter_user'
-    f.contains(
+    assert f.contains(
         "java -Xmx2g -Xms1g -jar " +
         "/servers/minecraft_folder/server.jar nogui")
 
@@ -51,9 +51,9 @@ def test_server_config(host):
     assert f.exists
     assert f.user == 'minecrafter_user'
     assert f.group == 'minecrafter_user'
-    f.contains("gamemode=survival")
-    f.contains("max-players=33")
-    f.contains("server-port=25565")
+    assert f.contains("gamemode=survival")
+    assert f.contains("max-players=33")
+    assert f.contains("server-port=25565")
 
 
 def test_eula_file(host):
@@ -61,8 +61,8 @@ def test_eula_file(host):
     assert f.exists
     assert f.user == 'minecrafter_user'
     assert f.group == 'minecrafter_user'
-    f.contains("eula=true")
-    f.content == "eula=true"
+    assert f.contains("eula=true")
+    assert f.content_string == "eula=true"
 
 
 def test_service_config(host):
@@ -70,16 +70,14 @@ def test_service_config(host):
     assert f.exists
     assert f.user == 'root'
     assert f.group == 'root'
-    f.contains("ExecStart=/servers/minecraft_folder/start_server.sh")
-    f.contains("User=minecrafter_user")
-    f.contains("Description=minecraft_service")
+    assert f.contains("ExecStart=/servers/minecraft_folder/start_server.sh")
+    assert f.contains("User=minecrafter_user")
+    assert f.contains("Description=minecraft_service")
 
 
 def test_java_installation(host):
     assert host.exists("java")
     version_result = host.run("java -version")
-    print(version_result.stdout)
-    print(version_result.stderr)
     assert ("build 1.8." in version_result.stdout or
             "build 1.8." in version_result.stderr)
     assert ("OpenJDK 64-Bit Server VM" in version_result.stdout or
