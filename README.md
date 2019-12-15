@@ -5,7 +5,7 @@ It's just a role to setup a Minecraft Java Edition server.
 
 [![CircleCI](https://circleci.com/gh/Eldius/minecraft-java-edition-ansible-role.svg?style=svg)](https://circleci.com/gh/Eldius/minecraft-java-edition-ansible-role)
 
-![Github Actions](https://github.com/Eldius/minecraft-java-edition-ansible-role/workflows/main/badge.svg)
+![Github Actions](https://github.com/Eldius/minecraft-java-edition-ansible-role/workflows/Molecule%20Test/badge.svg)
 
 
 Requirements
