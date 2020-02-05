@@ -13,6 +13,8 @@ minecraft_min_memory: 1024m
 ### The name used by Systemd to manage the service
 minecraft_service_name: minecraft
 
+minecraft_server_download_url: https://launcher.mojang.com/v1/objects/bb2b6b1aefcd70dfd1892149ac3a215f6c636b07/server.jar
+
 ## server.properties attributes
 minecraft_spawn_protection: 16
 minecraft_max_tick_time: 60000
