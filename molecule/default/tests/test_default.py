@@ -42,8 +42,8 @@ def test_startup_script(host):
     assert f.user == 'minecrafter_user'
     assert f.group == 'minecrafter_user'
     assert f.contains(
-        "java -Xmx2g -Xms1g -jar " +
-        "/servers/minecraft_folder/server.jar nogui")
+        "java $JAVA_OPTS -jar /servers/minecraft_folder/server.jar nogui"
+    )
 
 
 def test_server_config(host):
