@@ -1,12 +1,10 @@
 ---
-dependency:
-  name: galaxy
-driver:
-  name: docker
-lint:
-  name: yamllint
-platforms:
-  - name: ubuntu18
+  dependency:
+    name: galaxy
+  driver:
+    name: docker
+  platforms:
+  - name: ubuntu1604
     image: solita/ubuntu-systemd
     command: /sbin/init
     privileged: true
@@ -15,13 +13,34 @@ platforms:
   - name: centos7
     image: milcom/centos7-systemd
     privileged: true
-provisioner:
-  name: ansible
-  lint:
-    name: ansible-lint
-verifier:
-  name: testinfra
-  options:
-      verbose: true
-  lint:
-    name: flake8
+  provisioner:
+    name: ansible
+  verifier:
+    name: testinfra
+
+#dependency:
+#  name: galaxy
+#driver:
+#  name: docker
+#lint:
+#  name: yamllint
+#platforms:
+#  - name: ubuntu18
+#    image: solita/ubuntu-systemd
+#    command: /sbin/init
+#    privileged: true
+#    volumes:
+#      - /lib/modules:/lib/modules:ro
+#  - name: centos7
+#    image: milcom/centos7-systemd
+#    privileged: true
+#provisioner:
+#  name: ansible
+#  lint:
+#    name: ansible-lint
+#verifier:
+#  name: testinfra
+#  options:
+#      verbose: true
+#  lint:
+#    name: flake8
