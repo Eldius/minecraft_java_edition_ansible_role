@@ -4,15 +4,21 @@
   driver:
     name: docker
   platforms:
-  - name: ubuntu1604
-    image: solita/ubuntu-systemd
-    command: /sbin/init
-    privileged: true
-    volumes:
-      - /lib/modules:/lib/modules:ro
-  - name: centos7
-    image: milcom/centos7-systemd
-    privileged: true
+    - name: ubuntu_16.04
+      image: solita/ubuntu-systemd:16.04
+      command: /sbin/init
+      privileged: true
+      volumes:
+        - /lib/modules:/lib/modules:ro
+    - name: ubuntu_18.04
+      image: solita/ubuntu-systemd:18.04
+      command: /sbin/init
+      privileged: true
+      volumes:
+        - /lib/modules:/lib/modules:ro
+    - name: centos7
+      image: milcom/centos7-systemd
+      privileged: true
   provisioner:
     name: ansible
   verifier:
