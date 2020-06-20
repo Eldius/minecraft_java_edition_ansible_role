@@ -1,22 +1,28 @@
 ---
-- name: Install dependencies
-  package:
-    name:
-      - openjdk-8-jdk
-      - wget
-      - curl
-    update_cache: true
-    state: present
-  become: true
+- name: "Debug info (distribution)"
+  debug:
+    msg: "{{ ansible_distribution }}"
 
-- name: Create service user
+- name: "Debug info (os family)"
+  debug:
+    msg: "{{ ansible_facts['os_family'] }}"
+
+- name: "({{ ansible_distribution }})  Run Debian family"
+  import_tasks: ubuntu.yml
+  when: ansible_distribution == 'Ubuntu'
+
+- name: "({{ ansible_distribution }})  Run Debian family"
+  import_tasks: centos.yml
+  when: ansible_distribution == 'CentOS'
+
+- name: "({{ ansible_distribution }})  Create service user"
   user:
     name: "{{ minecraft_service_user }}"
     system: true
     state: present
   become: true
 
-- name: Create install folder
+- name: "({{ ansible_distribution }})  Create install folder"
   file:
     path: "{{ minecraft_install_folder }}"
     owner: "{{ minecraft_service_user }}"
@@ -25,7 +31,7 @@
     mode: 0744
   become: true
 
-- name: Prepare the eula.txt file
+- name: "({{ ansible_distribution }})  Prepare the eula.txt file"
   copy:
     content: "eula=true"
     dest: "{{ minecraft_install_folder }}/eula.txt"
@@ -35,7 +41,7 @@
   notify:
     - restart minecraft-service
 
-- name: Getting the server JAR file
+- name: "({{ ansible_distribution }})  Getting the server JAR file"
   get_url:
     url: "{{ minecraft_server_download_url }}"
     dest: "{{ minecraft_install_folder }}"
@@ -46,7 +52,7 @@
   notify:
     - restart minecraft-service
 
-- name: Setting up server.properties file
+- name: "({{ ansible_distribution }})  Setting up server.properties file"
   template:
     src: server.properties
     dest: "{{ minecraft_install_folder }}"
@@ -59,7 +65,7 @@
   notify:
     - restart minecraft-service
 
-- name: Setting up startup script
+- name: "({{ ansible_distribution }})  Setting up startup script"
   template:
     src: start_server.sh
     dest: "{{ minecraft_install_folder }}"
@@ -70,7 +76,7 @@
   notify:
     - restart minecraft-service
 
-- name: Create Systemd service file
+- name: "({{ ansible_distribution }})  Create Systemd service file"
   template:
     src: service.service
     dest: "/etc/systemd/system/{{ minecraft_service_name }}.service"

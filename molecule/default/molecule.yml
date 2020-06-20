@@ -6,19 +6,15 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: test-instance-ubuntu
-    image: eldius/ubuntu-systemd:latest
+  - name: ubuntu18
+    image: solita/ubuntu-systemd
     command: /sbin/init
-    security_opts:
-      - seccomp=unconfined
+    privileged: true
     volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    tmpfs:
-      - /tmp
-      - /run
-      - /run/lock
-    env:
-      container: docker
+      - /lib/modules:/lib/modules:ro
+  - name: centos7
+    image: milcom/centos7-systemd
+    privileged: true
 provisioner:
   name: ansible
   lint:
