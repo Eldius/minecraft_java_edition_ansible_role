@@ -7,6 +7,10 @@ It's just a role to setup a Minecraft Java Edition server.
 
 ![Github Actions](https://github.com/Eldius/minecraft-java-edition-ansible-role/workflows/Molecule%20Test/badge.svg)
 
+Links
+-----
+
+[The Inside Playbook/Developing and Testing Ansible Roles with Molecule and Podman - Part 1](https://www.ansible.com/blog/developing-and-testing-ansible-roles-with-molecule-and-podman-part-1)
 
 Requirements
 ------------
