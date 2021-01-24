@@ -37,6 +37,7 @@
     dest: "{{ minecraft_install_folder }}/eula.txt"
     owner: "{{ minecraft_service_user }}"
     group: "{{ minecraft_service_user }}"
+    mode: 0744
   become: true
   notify:
     - restart minecraft-service
@@ -82,6 +83,7 @@
     dest: "/etc/systemd/system/{{ minecraft_service_name }}.service"
     owner: "root"
     group: "root"
+    mode: 0744
   become: true
   notify:
     - restart minecraft-service
